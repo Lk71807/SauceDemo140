@@ -18,3 +18,4 @@ BDD = Behavior Driven Development = Desenvolvimento Direcionado por comportament
 Dado - Quando - Então
 Cumcumber.io
 
+BDD para se comunicar melhor, automação conectada em Gherkin

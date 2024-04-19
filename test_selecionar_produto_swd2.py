@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 # 2 - Classe (Opcional)
 class Teste_Produtos():
 
-     url = "https://www.saucedemo.com"
+     url = "https://www.saucedemo.com"        
 
 
 
@@ -29,6 +29,7 @@ class Teste_Produtos():
         assert self.driver.find_element(By.ID, "item_4_title_link").text == "Sauce Labs Backpack"
         assert self.driver.find_element(By.CSS_SELECTOR, ".inventory_item:nth-child(1) .inventory_item_price").text == "$29.99" 
         assert self.driver.find_element(By.NAME, "add-to-cart-sauce-labs-backpack").click
-        assert self.driver.find_element(By.CSS_SELECTOR, "cart_item").text == "1"
 
-
+        assert self.driver.find_element(By.CSS_SELECTOR, ".shopping_cart_badge").text == "1"
+        
+        assert self.driver.find_element(By.CSS_SELECTOR, ".shopping_cart_badge").click()
