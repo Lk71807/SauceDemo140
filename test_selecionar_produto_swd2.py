@@ -28,8 +28,17 @@ class Teste_Produtos():
         assert self.driver.find_element(By.CSS_SELECTOR, ".title").text == "Products"
         assert self.driver.find_element(By.ID, "item_4_title_link").text == "Sauce Labs Backpack"
         assert self.driver.find_element(By.CSS_SELECTOR, ".inventory_item:nth-child(1) .inventory_item_price").text == "$29.99" 
-        assert self.driver.find_element(By.NAME, "add-to-cart-sauce-labs-backpack").click
+        assert self.driver.find_element(By.NAME, "add-to-cart-sauce-labs-backpack").click      # add no carrinho
+        assert self.driver.find_element(By.CSS_SELECTOR, ".title").text == "Your Cart"      # entra no carrinho
+        assert self.driver.find_element(By.CSS_SELECTOR, "item-quantity").text == "1"          # validar carrinho de compra
 
-        assert self.driver.find_element(By.CSS_SELECTOR, ".shopping_cart_badge").text == "1"
-        
-        assert self.driver.find_element(By.CSS_SELECTOR, ".shopping_cart_badge").click()
+        # validar produto no carrinho
+        assert self.driver.find_element(By.CSS_SELECTOR, ".inventory-item-name").text == "Sauce Labs Backpack"
+        assert self.driver.find_element(By.CSS_SELECTOR, ".inventory_item_price").text == "$29.99"
+
+        # Remover o produto
+        self.driver.find_element(By.ID, "remove-sauce-labs-backpack").click()   # remove mochila
+
+        # Realiza Lougout
+
+        self.driver.find_element(By.ID, "logout_sidebar_link").click()            # faz logout no site

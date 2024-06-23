@@ -29,5 +29,5 @@ class Teste_Produtos():
         assert self.driver.find_element(By.ID, "item_4_title_link").text == "Sauce Labs Backpack"  #confirma se é a mochila
         # confirma o preço da mochila
         assert self.driver.find_element(By.CSS_SELECTOR, ".inventory_item:nth-child(1) .inventory_item_price").text == "$29.99"  
-    
+        assert self.driver.find_element(By.CSS_SELECTOR)
        

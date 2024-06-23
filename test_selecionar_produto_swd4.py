@@ -28,4 +28,4 @@ class Teste_Produto():
        assert self.driver.find_element(By.CSS_SELECTOR, "span.title").text == "Products"
        assert self.driver.find_element(By.ID, "item_4_title_link").text == "Sauce Labs Backpack"
        assert self.driver.find_element(By.CSS_SELECTOR, ".inventory_item:nth-child(1) .inventory_item_price").text == "$29.99"  
-    
+       assert self.driver.find_element
