@@ -15,7 +15,7 @@ def step_impl(context, email, senha):
     wait = WebDriverWait(context.driver, 10)
     login_button = wait.until(EC.presence_of_element_located((By.ID, "login")))  # Verifique o ID do botão de login
     login_button.click()
-    context.driver.find_element(By.ID, "email_or_cpf").send_keys(email)  # Verifique o ID do campo de email ou CPF
+    context.driver.find_element(By.ID, "email_ou_cpf").send_keys(email)  # Verifique o ID do campo de email ou CPF
     context.driver.find_element(By.ID, "password").send_keys(senha)  # Verifique o ID do campo de senha
     context.driver.find_element(By.ID, "login_submit").click()  # Verifique o ID do botão de submissão do login
 
