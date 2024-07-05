@@ -2,5 +2,6 @@ Feature: Login Positivo
 
   Scenario: Login positivo
         Given que entro no site Giuliana Flores
+        End clico em perfil
         When preencho os campos de login com E-mail ou CPF <joaomaria@hotmail.com> e senha <JM61093188*>
         Then exibe a <mensagem> Boa Tarde, Joao!
