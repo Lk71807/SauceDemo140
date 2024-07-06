@@ -2,9 +2,9 @@ Feature: Login Negativo
 
 Scenario Outline: Login Negativo
     Given acesso o site Giuliana Flores
-    End clico perfil
+    And clico perfil
     When coloco nos campos de login com E-mail ou CPF <E-mail ou CPF> e senha <senha>
-    Then exibe a <mensagem> de erro no login
+    Then exibe a mensagem de erro no login "<mensagem>"
 
 Examples:
     | id | E-mail ou CPF         | senha       | mensagem                                                                   |
