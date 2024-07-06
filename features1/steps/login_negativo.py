@@ -31,6 +31,6 @@ def step_impl(context, usuario):
 
 @then(u'exibe a mensagem de erro no login "{mensagem}"')
 def step_exibe_mensagem_erro(context, mensagem):
-    error_message = context.driver.find_element(By.ID, "errorMessage")  # Substitua pelo ID ou outro seletor real da mensagem de erro
+    error_message = context.driver.find_element(By.CSS_SELECTOR, ".mensagem-erro")  
     assert mensagem in error_message.text
     context.driver.quit()
