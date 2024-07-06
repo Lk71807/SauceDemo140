@@ -1,31 +1,36 @@
 from behave import given, when, then
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
-@given(u'que entro no site Giuliana Flores')
-def step_impl(context):
+@given(u'acesso o site Giuliana Flores')
+def step_acesso_site(context):
     context.driver = webdriver.Chrome()
     context.driver.get("https://www.giulianaflores.com.br")
-    context.driver.maximize_window()
+    # Aguarde o site carregar
+    context.driver.implicitly_wait(10)
 
-@then(u'clico em perfil')
-def step_impl(context):
-    wait = WebDriverWait(context.driver, 10)
-    perfil_button = wait.until(EC.presence_of_element_located((By.ID, "perfil")))  # Verifique o ID do botão de perfil
+@when(u'clico perfil')
+def step_clico_perfil(context):
+    perfil_button = context.driver.find_element(By.ID, "perfilButton")  # Substitua pelo ID ou outro seletor real do botão de perfil
     perfil_button.click()
 
-@when(u'preencho os campos de login com E-mail ou CPF "{email}" e senha "{senha}"')
-def step_impl(context, email, senha):
-    wait = WebDriverWait(context.driver, 10)
-    context.driver.find_element(By.ID, "email_or_cpf").send_keys(email)  # Verifique o ID do campo de email ou CPF
-    context.driver.find_element(By.ID, "password").send_keys(senha)  # Verifique o ID do campo de senha
-    context.driver.find_element(By.ID, "login_submit").click()  # Verifique o ID do botão de submissão do login
+@when(u'coloco nos campos de login com E-mail ou CPF {email} e senha {senha}')
+def step_coloco_campos_login(context, email, senha):
+    email_field = context.driver.find_element(By.ID, "loginEmail")  # Substitua pelo ID ou outro seletor real do campo de email
+    password_field = context.driver.find_element(By.ID, "loginPassword")  # Substitua pelo ID ou outro seletor real do campo de senha
+    email_field.send_keys(email)
+    password_field.send_keys(senha)
+    login_button = context.driver.find_element(By.ID, "loginButton")  # Substitua pelo ID ou outro seletor real do botão de login
+    login_button.click()
 
-@then(u'exibe a mensagem de erro "{mensagem}"')
-def step_impl(context, mensagem):
-    wait = WebDriverWait(context.driver, 10)
-    mensagem_element = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "elemento-que-contem-a-mensagem")))  # Verifique o seletor do elemento que contém a mensagem
-    assert mensagem in mensagem_element.text
+@when(u'preencho os campos de login com usuario {usuario} e senha ')
+def step_impl(context, usuario):
+    context.driver.find_element(By.ID, "user-name").send_keys(usuario)   # preencher o usuario
+    # Não preencho a senha
+    context.driver.find_element(By.ID, "login-button").click()           # clicar no botão login
+
+@then(u'exibe a mensagem de erro no login "{mensagem}"')
+def step_exibe_mensagem_erro(context, mensagem):
+    error_message = context.driver.find_element(By.ID, "errorMessage")  # Substitua pelo ID ou outro seletor real da mensagem de erro
+    assert mensagem in error_message.text
     context.driver.quit()
